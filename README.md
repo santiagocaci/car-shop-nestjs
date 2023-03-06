@@ -15,6 +15,8 @@
 $ npm install
 ```
 
+Clone `.env.template` and rename `.env`
+
 ## Running the app
 
 ```bash
