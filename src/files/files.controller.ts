@@ -25,7 +25,7 @@ export class FilesController {
     private readonly configService: ConfigService,
   ) {}
 
-  @Get('products/:imageName')
+  @Get('product/:imageName')
   findProductImage(
     @Res() res: Response,
     @Param('imageName') imageName: string,
@@ -34,7 +34,7 @@ export class FilesController {
     return res.sendFile(path);
   }
 
-  @Post('products')
+  @Post('product')
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({

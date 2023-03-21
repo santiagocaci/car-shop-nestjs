@@ -5,7 +5,7 @@
 postgres/
 
 .env
-static/*/*.png
+static/*/*.jpg
 public/products/**.jpg
 
 # Logs
