@@ -5,7 +5,7 @@ import {
   Get,
   UseGuards,
   Headers,
-  SetMetadata,
+  Header,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
@@ -33,6 +33,12 @@ export class AuthController {
     return this.authService.login(loginUserDto);
   }
 
+  @Get('check-status')
+  @Auth()
+  checkAuthStatus(@GetUser() user: User) {
+    return this.authService.checkAuthStatus(user);
+  }
+
   @Get('private')
   @UseGuards(AuthGuard())
   testPrivateRoute(
@@ -46,7 +52,7 @@ export class AuthController {
     // console.log(user);
     // console.log(userEmail);
     // console.log(rawHeaders);
-    console.log(header);
+    console.log(header['authorization']);
 
     return {
       ok: true,

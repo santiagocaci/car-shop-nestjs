@@ -2,6 +2,7 @@ import {
   BadRequestException,
   Injectable,
   InternalServerErrorException,
+  NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
@@ -48,6 +49,10 @@ export class AuthService {
       throw new UnauthorizedException('Credentials are not valid(email)');
     if (!bcrypt.compareSync(password, user.password))
       throw new UnauthorizedException('Credentials are not valid(pass)');
+    return { ...user, token: this.getJwtToken({ id: user.id }) };
+  }
+
+  async checkAuthStatus(user: User) {
     return { ...user, token: this.getJwtToken({ id: user.id }) };
   }
 
